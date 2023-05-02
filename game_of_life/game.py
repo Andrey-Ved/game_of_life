@@ -7,7 +7,7 @@ from game_of_life.definition import *
 
 class GameManager:
     def __init__(self):
-        self._widget = GameFieldView(GAME_FIELD, BUTTONS_WITH_START)
+        self._widget = GameFieldView(GAME_FIELD, TEXTS, BUTTONS_WITH_START)
         self.game_stage = GameStage.INIT
 
     def checking_ending(self):

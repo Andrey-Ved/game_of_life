@@ -1,11 +1,6 @@
 from game_of_life.definition import FIELD_SIZE
 
 
-TEXTS = {
-    'game over': 'игра окончена',
-    'window title': 'Game of Life',
-}
-
 MESSAGE_DURATION = 2
 
 CELL_SIZE = 20

@@ -1,12 +1,12 @@
 import pygame
 from time import sleep
 
-from game_of_life.definition import *
+from game_of_life.definition import Cell
 from game_of_life.UI.config import *
 
 
 class GameFieldView:
-    def __init__(self, field, buttons, texts=TEXTS):
+    def __init__(self, field, texts, buttons):
         self.field = field
         self.texts = texts
 

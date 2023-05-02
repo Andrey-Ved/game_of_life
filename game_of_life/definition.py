@@ -27,6 +27,11 @@ BUTTONS_WITH_STOP = [
     Button(name='stop', text='стоп'),
 ]
 
+TEXTS = {
+    'game over': 'игра окончена',
+    'window title': 'Game of Life',
+}
+
 FIELD_SIZE = 30
 
 GAME_FIELD = [[Cell.VOID] * FIELD_SIZE for _ in range(FIELD_SIZE)]
