@@ -15,6 +15,7 @@ class GameManager:
 
     def click_handler(self, screen_x, screen_y):
         button_name = self._widget.pressed_button(screen_x, screen_y)
+
         if button_name:
             self.buttons_handler(button_name)
         else:
@@ -49,8 +50,8 @@ class GameManager:
 
 class Game:
     def __init__(self):
-        self.manager = GameManager()
-        self.make_step = make_step
+        self._manager = GameManager()
+        self._make_step = make_step
 
     def main_loop(self):
         finished = False
@@ -61,15 +62,15 @@ class Game:
                 if event.type == pygame.QUIT:
                     finished = True
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    self.manager.click_handler(
+                    self._manager.click_handler(
                         *pygame.mouse.get_pos()
                     )
 
             clock.tick(FPS)
 
-            if self.manager.game_stage == GameStage.LIFE:
-                self.make_step(GAME_FIELD)
+            if self._manager.game_stage == GameStage.LIFE:
+                self._make_step(GAME_FIELD)
 
-            self.manager.display_field()
+            self._manager.display_field()
             pygame.display.flip()
-            self.manager.checking_ending()
+            self._manager.checking_ending()

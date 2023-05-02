@@ -7,16 +7,16 @@ from game_of_life.UI.config import *
 
 class GameFieldView:
     def __init__(self, field, texts, buttons):
-        self.field = field
-        self.texts = texts
+        self._field = field
+        self._texts = texts
 
         pygame.init()
         pygame.font.SysFont(FONT_NAME, TEXTS_FONT_SIZE)
 
-        self.font = pygame.font.Font(None, TEXTS_FONT_SIZE)
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        self._font = pygame.font.Font(None, TEXTS_FONT_SIZE)
+        self._screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-        pygame.display.set_caption(self.texts['window title'])
+        pygame.display.set_caption(self._texts['window title'])
 
         self.display_buttons(buttons)
         self.display_field()
@@ -25,13 +25,13 @@ class GameFieldView:
         for field_x in range(0, FIELD_SIZE):
             for field_y in range(0, FIELD_SIZE):
 
-                if self.field[field_x][field_y] == Cell.VOID:
+                if self._field[field_x][field_y] == Cell.VOID:
                     cell_color = FIELD_COLOR_VOID
                 else:
                     cell_color = FIELD_COLOR_LIFE
 
                 pygame.draw.rect(
-                    self.screen,
+                    self._screen,
                     cell_color,
                     (
                         field_x * CELL_SIZE + LINE_WIDTH,
@@ -42,38 +42,38 @@ class GameFieldView:
                 )
 
     def display_buttons(self, buttons):
-        self.buttons = buttons
-        self.button_number = len(self.buttons)
-        self.button_width = WIDTH // self.button_number
+        self._buttons = buttons
+        self._button_number = len(self._buttons)
+        self._button_width = WIDTH // self._button_number
 
         pygame.draw.rect(
-            self.screen,
+            self._screen,
             BACKGROUND_COLOR,
             (0, 0, WIDTH, BUTTON_ZONE_SIZE)
         )
 
-        for n in range(self.button_number):
+        for n in range(self._button_number):
             pygame.draw.rect(
-                self.screen,
+                self._screen,
                 BUTTONS_COLOR,
                 (
-                    LINE_WIDTH + n * self.button_width,
-                    LINE_WIDTH, self.button_width - LINE_WIDTH * 2,
+                    LINE_WIDTH + n * self._button_width,
+                    LINE_WIDTH, self._button_width - LINE_WIDTH * 2,
                     BUTTON_ZONE_SIZE - LINE_WIDTH * 2
                 )
             )
 
-            self.text_out(
-                text=self.buttons[n].text,
+            self._text_out(
+                text=self._buttons[n].text,
                 color=COLOR_OF_BUTTONS_LABELS,
                 coordinates=(
-                    n * self.button_width + self.button_width // 2,
+                    n * self._button_width + self._button_width // 2,
                     BUTTON_ZONE_SIZE // 2
                 )
             )
 
-    def message_output(self, message):
-        self.text_out(
+    def message_out(self, message):
+        self._text_out(
             text=message,
             color=MESSAGE_COLOR,
             coordinates=(
@@ -84,20 +84,20 @@ class GameFieldView:
         pygame.display.flip()
         sleep(MESSAGE_DURATION)
 
-    def text_out(self, text, color, coordinates):
-        text = self.font.render(text, True, color)
+    def _text_out(self, text, color, coordinates):
+        text = self._font.render(text, True, color)
 
         text_rect = text.get_rect()
         text_rect.center = coordinates
 
-        self.screen.blit(text, text_rect)
+        self._screen.blit(text, text_rect)
 
     def pressed_button(self, screen_x, screen_y):
         if screen_y > BUTTON_ZONE_SIZE:
             return None
         else:
-            return self.buttons[
-                screen_x // self.button_width
+            return self._buttons[
+                screen_x // self._button_width
                 ].name
 
     @staticmethod

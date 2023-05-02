@@ -37,3 +37,7 @@ FIELD_SIZE = 30
 GAME_FIELD = [[Cell.VOID] * FIELD_SIZE for _ in range(FIELD_SIZE)]
 
 FPS = 13
+
+CALCULATION_OPTION = 0  # 0 - simple, 1 - queue, 2 - in piecemeal
+
+assert 0 <= CALCULATION_OPTION < 3, 'expected that CALCULATION_OPTIONS would be from 0 to 2'
