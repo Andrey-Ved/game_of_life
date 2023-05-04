@@ -43,7 +43,12 @@ def count_neighbors(game_field):
     # with ThreadPoolExecutor() as executor:
     #     futures = []
     #     for process in range(WORKERS_NUMBER):
-    #         futures.append(executor.submit(worker, tasks, answers, lock, game_field))
+    #         futures.append(
+    #             executor.submit(
+    #                 worker,
+    #                 tasks, answers, lock, game_field
+    #             )
+    #         )
     #
     #     for future in as_completed(futures):
     #         future.result()
