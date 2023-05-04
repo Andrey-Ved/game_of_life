@@ -1,7 +1,7 @@
 import pygame
 
 from game_of_life.UI.field_widget import GameFieldView
-from game_of_life.step import make_step
+from game_of_life.calculation.step import make_step
 from game_of_life.definition import *
 
 
